@@ -1,5 +1,5 @@
 import { APIApplicationCommand } from 'discord-api-types/v10'
-import { EnvApplicationBotToken, EnvApplicationID } from './env'
+import { EnvApplicationBotToken, EnvApplicationID } from '../env'
 import { DISCORD_API_ENDPOINT } from '.'
 
 export async function bulkOverwriteGlobalApplicationCommands(commands: Partial<APIApplicationCommand>[], env: EnvApplicationID & EnvApplicationBotToken) {

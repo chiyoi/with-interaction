@@ -1,5 +1,5 @@
 import { APIChannel } from 'discord-api-types/v10'
-import { EnvApplicationBotToken } from './env'
+import { EnvApplicationBotToken } from '../env'
 import { DISCORD_API_ENDPOINT } from '.'
 
 export async function getChannel(channelID: string, env: EnvApplicationBotToken) {

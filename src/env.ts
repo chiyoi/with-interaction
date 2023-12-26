@@ -5,3 +5,7 @@ export type EnvApplicationID = {
 export type EnvApplicationBotToken = {
   DISCORD_APPLICATION_BOT_TOKEN: string,
 }
+
+export type EnvApplicationPublicKey = {
+  DISCORD_APPLICATION_PUBLIC_KEY: string,
+}
