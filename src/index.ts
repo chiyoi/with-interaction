@@ -1,2 +1,2 @@
-export { withInteraction, type WithInteraction } from './with_interaction'
-export { installGlobalCommands, deleteGlobalCommand } from './requests'
+export * from './with_interaction'
+export * from './requests'
