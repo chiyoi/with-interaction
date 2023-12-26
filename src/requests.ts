@@ -3,7 +3,7 @@ import { APIApplicationCommand } from 'discord-api-types/v10'
 export const ENDPOINT = 'https://discord.com/api/v10'
 
 export async function installGlobalCommands(commands: Partial<APIApplicationCommand>[], env: EnvInstallGlobalCommands) {
-  const endpoint = `${ENDPOINT}/applications/${env.DISCORD_APPLICATION_TOKEN}/commands`
+  const endpoint = `${ENDPOINT}/applications/${env.DISCORD_APPLICATION_ID}/commands`
   return fetch(endpoint, {
     method: 'PUT',
     headers: {
