@@ -1,0 +1,28 @@
+{
+  "name": "@neko03/with-interaction",
+  "version": "0.1.0",
+  "description": "Discord interactions utils compatible with itty-router and cloudflare workers.",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chiyoi/with-interaction.git"
+  },
+  "keywords": [
+    "discord",
+    "interactions"
+  ],
+  "author": "chiyoi",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/chiyoi/with-interaction/issues"
+  },
+  "homepage": "https://github.com/chiyoi/with-interaction#readme",
+  "dependencies": {
+    "discord-api-types": "^0.37.66",
+    "discord-interactions": "^3.4.0",
+    "itty-router": "^4.0.23"
+  }
+}
