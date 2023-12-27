@@ -1,14 +1,13 @@
-import { APIChannel } from 'discord-api-types/v10'
-import { EnvApplicationBotToken } from '../env'
+import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
+import { EnvApplicationBotToken } from '../env'
+import { headersAuthorizationBotToken } from '../headers'
 
 export async function getChannel(channelID: string, env: EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channelID}`
   const response = await fetch(endpoint, {
-    headers: {
-      Authorization: `Bot ${env.DISCORD_APPLICATION_BOT_TOKEN}`,
-    }
+    headers: headersAuthorizationBotToken(env),
   })
   if (!response.ok) throw new Error(`Get Channel error: ${await response.text()}`)
-  return await response.json() as APIChannel
+  return await response.json() as api.APIChannel
 }

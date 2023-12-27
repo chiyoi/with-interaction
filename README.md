@@ -3,19 +3,24 @@ Discord interactions utils compatible with itty-router and Cloudflare Workers.
 
 ## Docs
 ### Install
-`yarn add @neko03/with-interaction`
+```sh
+yarn add @neko03/with-interaction`
+```
 
 ### withInteraction
-```ts
+```typescript
   router.post('/interactions', withInteraction, handleInteraction)
 ```
 
 ### Requests
-Low-level wrappings for the [Discord API](https://discord.com/developers/docs).\
+A low-level wrapping for the [Discord API](https://discord.com/developers/docs).\
 Currently implemented:
 - [bulkOverwriteGlobalApplicationCommands](https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands)
-- [getChannel](https://discord.com/developers/docs/resources/channel#get-channel)
 
+- [getOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#get-original-interaction-response)
+- [editOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#edit-original-interaction-response)
+- [deleteOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#delete-original-interaction-response)
+* [getChannel](https://discord.com/developers/docs/resources/channel#get-channel)
 
 ## Development
 - API Structures from `discord-api-types`
