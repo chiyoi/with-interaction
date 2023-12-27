@@ -1,15 +1,15 @@
 import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
 import { EnvApplicationBotToken, EnvApplicationID } from '../env'
-import { headersAuthorizationBotToken, headersContentTypeJSON } from '../headers'
+import * as headers from '../headers'
 
 export async function bulkOverwriteGlobalApplicationCommands(commands: Partial<api.APIApplicationCommand>[], env: EnvApplicationID & EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/applications/${env.DISCORD_APPLICATION_ID}/commands`
   const response = await fetch(endpoint, {
     method: 'PUT',
     headers: {
-      ...headersAuthorizationBotToken(env),
-      ...headersContentTypeJSON,
+      ...headers.AuthorizationBotToken(env),
+      ...headers.ContentTypeJSON,
     },
     body: JSON.stringify(commands)
   })
@@ -19,7 +19,7 @@ export async function bulkOverwriteGlobalApplicationCommands(commands: Partial<a
 
 export async function getOriginalInteractionResponse(interactionToken: string, env: EnvApplicationID & EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interactionToken}/messages/@original`
-  const response = await fetch(endpoint, { headers: headersAuthorizationBotToken(env) })
+  const response = await fetch(endpoint, { headers: headers.AuthorizationBotToken(env) })
   if (!response.ok) throw new Error(`Get Original Interaction Response error: ${await response.text()}`)
   return await response.json() as api.APIMessage
 }
@@ -29,8 +29,8 @@ export async function editOriginalInteractionResponse(interactionToken: string, 
   const response = await fetch(endpoint, {
     method: 'PATCH',
     headers: {
-      ...headersAuthorizationBotToken(env),
-      ...headersContentTypeJSON,
+      ...headers.AuthorizationBotToken(env),
+      ...headers.ContentTypeJSON,
     },
     body: JSON.stringify(body),
   })
@@ -40,6 +40,6 @@ export async function editOriginalInteractionResponse(interactionToken: string, 
 
 export async function deleteOriginalInteractionResponse(interactionToken: string, env: EnvApplicationID & EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interactionToken}/messages/@original`
-  const response = await fetch(endpoint, { method: 'DELETE', headers: headersAuthorizationBotToken(env) })
+  const response = await fetch(endpoint, { method: 'DELETE', headers: headers.AuthorizationBotToken(env) })
   if (response.status !== 204) throw new Error(`Delete Original Interaction Response error: ${await response.text()}`)
 }

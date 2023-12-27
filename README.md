@@ -1,5 +1,5 @@
 # withInteraction
-Discord interactions utils compatible with itty-router and Cloudflare Workers.
+Discord interactions helpers compatible with itty-router and Cloudflare Workers.
 
 ## Docs
 ### Install
