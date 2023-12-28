@@ -1,6 +1,6 @@
 {
   "name": "@neko03/with-interaction",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Discord interactions helpers compatible with itty-router and Cloudflare Workers.",
   "main": "src/index.ts",
   "scripts": {
