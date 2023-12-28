@@ -24,7 +24,7 @@ export async function getOriginalInteractionResponse(interaction: { token: strin
   return await response.json() as api.APIMessage
 }
 
-export async function editOriginalInteractionResponse(interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPatchAPIWebhookWithTokenMessageJSONBody) {
+export async function editOriginalInteractionResponse(interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPatchAPIWebhookWithTokenMessageJSONBody | FormData) {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interaction.token}/messages/@original`
   const response = await fetch(endpoint, {
     method: 'PATCH',
@@ -32,7 +32,7 @@ export async function editOriginalInteractionResponse(interaction: { token: stri
       ...headers.AuthorizationBotToken(env),
       ...headers.ContentTypeJSON,
     },
-    body: JSON.stringify(body),
+    body: body instanceof FormData ? body : JSON.stringify(body),
   })
   if (!response.ok) throw new Error(`Edit Original Interaction Response error: ${await response.text()}`)
   return await response.json() as api.RESTPatchAPIInteractionOriginalResponseResult
