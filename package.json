@@ -22,11 +22,10 @@
   },
   "homepage": "https://github.com/chiyoi/with-interaction#readme",
   "dependencies": {
-    "itty-router": "^4.0.23",
-    "discord-interactions": "^3.4.0"
-  },
-  "devDependencies": {
     "typescript": "^5.3.3",
+    "itty-router": "^4.0.23",
+    "discord-interactions": "^3.4.0",
     "discord-api-types": "^0.37.66"
-  }
+  },
+  "devDependencies": {}
 }
