@@ -3,7 +3,7 @@ import { APIInteraction } from 'discord-api-types/v10'
 import { verifyKey } from 'discord-interactions'
 import { EnvApplicationPublicKey } from './env'
 
-export async function withInteraction(request: IRequest & WithInteraction, env: EnvApplicationPublicKey) {
+export async function withInteraction(request: IRequest & WithInteraction, env: EnvApplicationPublicKey, ctx: ExecutionContext) {
   const body = await request.text()
   const signature = request.headers.get('X-Signature-Ed25519')
   const timestamp = request.headers.get('X-Signature-Timestamp')

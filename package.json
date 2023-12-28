@@ -1,6 +1,6 @@
 {
   "name": "@neko03/with-interaction",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Discord interactions helpers compatible with itty-router and Cloudflare Workers.",
   "main": "src/index.ts",
   "scripts": {
@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/chiyoi/with-interaction#readme",
   "dependencies": {
+    "@cloudflare/workers-types": "^4.20231121.0",
     "typescript": "^5.3.3",
     "itty-router": "^4.0.23",
     "discord-interactions": "^3.4.0",
