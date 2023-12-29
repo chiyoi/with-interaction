@@ -10,6 +10,20 @@ export async function getChannel(channel: { id: string }, env: EnvApplicationBot
   return await response.json() as api.APIChannel
 }
 
+export async function createMessage(channel: { id: string }, env: EnvApplicationBotToken, body: api.RESTPostAPIChannelMessageJSONBody | FormData) {
+  const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages`
+  const response = await fetch(endpoint, {
+    method: 'POST',
+    headers: {
+      ...AuthorizationBotToken(env),
+      ...(body instanceof FormData ? ContentTypeFormData : ContentTypeJSON),
+    },
+    body: body instanceof FormData ? body : JSON.stringify(body),
+  })
+  if (!response.ok) throw new Error(`Create Message error: ${await response.text()}`)
+  return await response.json() as api.APIMessage
+}
+
 export async function editMessage(channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken, body: api.RESTPatchAPIChannelMessageJSONBody | FormData) {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages/${message.id}`
   const response = await fetch(endpoint, {
@@ -22,4 +36,13 @@ export async function editMessage(channel: { id: string }, message: { id: string
   })
   if (!response.ok) throw new Error(`Edit Message error: ${await response.text()}`)
   return await response.json() as api.APIMessage
+}
+
+export async function deleteMessage(channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken) {
+  const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages/${message.id}`
+  const response = await fetch(endpoint, {
+    method: 'DELETE',
+    headers: AuthorizationBotToken(env),
+  })
+  if (response.status !== 204) throw new Error(`Delete Message error: ${await response.text()}`)
 }
