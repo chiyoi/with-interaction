@@ -5,7 +5,7 @@ export const AuthorizationBotToken: (env: EnvApplicationBotToken) => HeadersInit
 })
 
 export const ContentTypeFormData: HeadersInit = {
-  'Content-Type': 'multipart/form-data; charset=UTF-8',
+  'Content-Type': 'multipart/form-data',
 }
 
 export const ContentTypeJSON: HeadersInit = {
