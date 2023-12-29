@@ -13,14 +13,7 @@ yarn add @neko03/with-interaction`
 ```
 
 ### Requests
-A low-level wrapping for the [Discord API](https://discord.com/developers/docs).\
-Currently implemented:
-- [bulkOverwriteGlobalApplicationCommands](https://discord.com/developers/docs/interactions/application-commands#bulk-overwrite-global-application-commands)
-
-- [getOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#get-original-interaction-response)
-- [editOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#edit-original-interaction-response)
-- [deleteOriginalInteractionResponse](https://discord.com/developers/docs/interactions/receiving-and-responding#delete-original-interaction-response)
-* [getChannel](https://discord.com/developers/docs/resources/channel#get-channel)
+A low-level wrapping for the [Discord API](https://discord.com/developers/docs).
 
 ## Development
 - API Structures from `discord-api-types`
