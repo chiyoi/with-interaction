@@ -1,7 +1,7 @@
 import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
 import { EnvApplicationBotToken } from '../env'
-import { AuthorizationBotToken, ContentTypeFormData } from '@/src/headers'
+import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/headers'
 
 export async function getChannel(channel: { id: string }, env: EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}`
@@ -16,7 +16,7 @@ export async function editMessage(channel: { id: string }, message: { id: string
     method: 'PATCH',
     headers: {
       ...AuthorizationBotToken(env),
-      ...(body instanceof FormData && ContentTypeFormData)
+      ...(body instanceof FormData ? ContentTypeFormData : ContentTypeJSON),
     },
     body: body instanceof FormData ? body : JSON.stringify(body),
   })
