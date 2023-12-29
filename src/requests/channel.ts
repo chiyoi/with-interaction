@@ -1,7 +1,7 @@
 import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
 import { EnvApplicationBotToken } from '../env'
-import { AuthorizationBotToken } from '@/src/headers'
+import { AuthorizationBotToken, ContentTypeFormData } from '@/src/headers'
 
 export async function getChannel(channel: { id: string }, env: EnvApplicationBotToken) {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}`
@@ -14,7 +14,10 @@ export async function editMessage(channel: { id: string }, message: { id: string
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages/${message.id}`
   const response = await fetch(endpoint, {
     method: 'PATCH',
-    headers: AuthorizationBotToken(env),
+    headers: {
+      ...AuthorizationBotToken(env),
+      ...(body instanceof FormData && ContentTypeFormData)
+    },
     body: body instanceof FormData ? body : JSON.stringify(body),
   })
   if (!response.ok) throw new Error(`Edit Message error: ${await response.text()}`)
