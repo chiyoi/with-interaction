@@ -3,14 +3,14 @@ import { DISCORD_API_ENDPOINT } from '.'
 import { EnvApplicationBotToken } from '../env'
 import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/headers'
 
-export async function getChannel(channel: { id: string }, env: EnvApplicationBotToken) {
+export const getChannel = async (channel: { id: string }, env: EnvApplicationBotToken) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}`
   const response = await fetch(endpoint, { headers: AuthorizationBotToken(env) })
   if (!response.ok) throw new Error(`Get Channel error: ${await response.text()}`)
   return await response.json() as api.APIChannel
 }
 
-export async function createMessage(channel: { id: string }, env: EnvApplicationBotToken, body: api.RESTPostAPIChannelMessageJSONBody | FormData) {
+export const createMessage = async (channel: { id: string }, env: EnvApplicationBotToken, body: api.RESTPostAPIChannelMessageJSONBody | FormData) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages`
   const response = await fetch(endpoint, {
     method: 'POST',
@@ -24,7 +24,7 @@ export async function createMessage(channel: { id: string }, env: EnvApplication
   return await response.json() as api.APIMessage
 }
 
-export async function editMessage(channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken, body: api.RESTPatchAPIChannelMessageJSONBody | FormData) {
+export const editMessage = async (channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken, body: api.RESTPatchAPIChannelMessageJSONBody | FormData) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages/${message.id}`
   const response = await fetch(endpoint, {
     method: 'PATCH',
@@ -38,7 +38,7 @@ export async function editMessage(channel: { id: string }, message: { id: string
   return await response.json() as api.APIMessage
 }
 
-export async function deleteMessage(channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken) {
+export const deleteMessage = async (channel: { id: string }, message: { id: string }, env: EnvApplicationBotToken) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}/messages/${message.id}`
   const response = await fetch(endpoint, {
     method: 'DELETE',

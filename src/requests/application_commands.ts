@@ -3,7 +3,7 @@ import { DISCORD_API_ENDPOINT } from '.'
 import { EnvApplicationBotToken, EnvApplicationID } from '../env'
 import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/headers'
 
-export async function bulkOverwriteGlobalApplicationCommands(env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPutAPIApplicationCommandsJSONBody) {
+export const bulkOverwriteGlobalApplicationCommands = async (env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPutAPIApplicationCommandsJSONBody) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/applications/${env.DISCORD_APPLICATION_ID}/commands`
   const response = await fetch(endpoint, {
     method: 'PUT',
@@ -17,14 +17,14 @@ export async function bulkOverwriteGlobalApplicationCommands(env: EnvApplication
   return await response.json() as api.APIApplicationCommand[]
 }
 
-export async function getOriginalInteractionResponse(interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken) {
+export const getOriginalInteractionResponse = async (interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interaction.token}/messages/@original`
   const response = await fetch(endpoint, { headers: AuthorizationBotToken(env) })
   if (!response.ok) throw new Error(`Get Original Interaction Response error: ${await response.text()}`)
   return await response.json() as api.APIMessage
 }
 
-export async function editOriginalInteractionResponse(interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPatchAPIWebhookWithTokenMessageJSONBody | FormData) {
+export const editOriginalInteractionResponse = async (interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPatchAPIWebhookWithTokenMessageJSONBody | FormData) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interaction.token}/messages/@original`
   const response = await fetch(endpoint, {
     method: 'PATCH',
@@ -38,7 +38,7 @@ export async function editOriginalInteractionResponse(interaction: { token: stri
   return await response.json() as api.RESTPatchAPIInteractionOriginalResponseResult
 }
 
-export async function deleteOriginalInteractionResponse(interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken) {
+export const deleteOriginalInteractionResponse = async (interaction: { token: string }, env: EnvApplicationID & EnvApplicationBotToken) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/webhooks/${env.DISCORD_APPLICATION_ID}/${interaction.token}/messages/@original`
   const response = await fetch(endpoint, { method: 'DELETE', headers: AuthorizationBotToken(env) })
   if (response.status !== 204) throw new Error(`Delete Original Interaction Response error: ${await response.text()}`)
