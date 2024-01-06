@@ -1,7 +1,7 @@
 import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
-import { EnvApplicationBotToken, EnvApplicationID } from '../env'
-import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/headers'
+import { EnvApplicationBotToken, EnvApplicationID } from '../internal/env'
+import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/internal/headers'
 
 export const bulkOverwriteGlobalApplicationCommands = async (env: EnvApplicationID & EnvApplicationBotToken, body: api.RESTPutAPIApplicationCommandsJSONBody) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/applications/${env.DISCORD_APPLICATION_ID}/commands`

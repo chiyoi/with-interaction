@@ -1,7 +1,7 @@
 import * as api from 'discord-api-types/v10'
 import { DISCORD_API_ENDPOINT } from '.'
-import { EnvApplicationBotToken } from '../env'
-import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/headers'
+import { EnvApplicationBotToken } from '../internal/env'
+import { AuthorizationBotToken, ContentTypeFormData, ContentTypeJSON } from '@/src/internal/headers'
 
 export const getChannel = async (channel: { id: string }, env: EnvApplicationBotToken) => {
   const endpoint = `${DISCORD_API_ENDPOINT}/channels/${channel.id}`

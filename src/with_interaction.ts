@@ -1,7 +1,7 @@
 import { IRequest, error } from 'itty-router'
 import { APIInteraction } from 'discord-api-types/v10'
 import { verifyKey } from 'discord-interactions'
-import { EnvApplicationPublicKey } from './env'
+import { EnvApplicationPublicKey } from './internal/env'
 
 export const withInteraction = async (request: IRequest & WithInteraction, env: EnvApplicationPublicKey, ctx: ExecutionContext) => {
   const body = await request.text()
