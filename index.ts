@@ -1,9 +1,9 @@
-import { IRequest, error } from 'itty-router'
+import { IRequest, RouteHandler, error } from 'itty-router'
 import { APIInteraction } from 'discord-api-types/v10'
 import { verifyKey } from 'discord-interactions'
 import { EnvApplicationPublicKey } from './internal/env'
 
-export const withInteraction = async (request: IRequest & WithInteraction, env: EnvApplicationPublicKey, ctx: ExecutionContext) => {
+export const withInteraction: RouteHandler<IRequest & WithInteraction, [EnvApplicationPublicKey, ...any]> = async (request, env) => {
   const body = await request.text()
   const signature = request.headers.get('X-Signature-Ed25519')
   const timestamp = request.headers.get('X-Signature-Timestamp')
